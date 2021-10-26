@@ -30,7 +30,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 //Mount Routes
-app.use('/home', indexController)
+app.use('/', indexController)
 
 // Tell App to listen
 app.listen(PORT, () => 
