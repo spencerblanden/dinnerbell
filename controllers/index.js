@@ -1,50 +1,50 @@
 const express = require('express');
 const router = express.Router();
-const People = require('../models/people');
+const MenuItems = require('../models/MenuItems');
 
 
 router.get('/', (req,res) => {
     res.send('hello world')
 })
 
-router.get("/people", async (req, res) => {
+router.get("/menu", async (req, res) => {
     try {
-      // send all people
-      res.json(await People.find({}));
+      // send all menu
+      res.json(await MenuItems.find({}));
     } catch (error) {
       //send error
       res.status(400).json(error);
     }
   });
   
-// PEOPLE DELETE ROUTE
-router.delete("/people/:id", async (req, res) => {
+// menu DELETE ROUTE
+router.delete("/menu/:id", async (req, res) => {
     try {
-      // send all people
-      res.json(await People.findByIdAndDelete(req.params.id));
+      // send all menu
+      res.json(await MenuItems.findByIdAndDelete(req.params.id));
     } catch (error) {
       //send error
       res.status(400).json(error);
     }
   });
   
-  // PEOPLE UPDATE ROUTE
-  router.put("/people/:id", async (req, res) => {
+  // menu UPDATE ROUTE
+  router.put("/menu/:id", async (req, res) => {
     try {
-      // send all people
+      // send all menu
       res.json(
-        await People.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        await MenuItems.findByIdAndUpdate(req.params.id, req.body, { new: true })
       );
     } catch (error) {
       //send error
       res.status(400).json(error);
     }
   })
-  // PEOPLE CREATE ROUTE
-  router.post("/people", async (req, res) => {
+  // menu CREATE ROUTE
+  router.post("/menu", async (req, res) => {
     try {
-      // send all people
-      res.json(await People.create(req.body));
+      // send all menu
+      res.json(await MenuItems.create(req.body));
     } catch (error) {
       //send error
       res.status(400).json(error);
