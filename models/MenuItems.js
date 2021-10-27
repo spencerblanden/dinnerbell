@@ -2,12 +2,14 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 
-const PeopleSchema = new mongoose.Schema({
+const MenuSchema = new Schema({
     name: String,
     image: String,
-    title: String,
+    rating: String,
+    description: String, 
+    rated: Boolean
   });
   
-  const People = mongoose.model("People", PeopleSchema);
+  const MenuItems = mongoose.model("MenuItems", MenuSchema);
 
-  module.exports = People;
+  module.exports = MenuItems;
