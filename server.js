@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const indexController = require('./controllers/index.js')
+const userController = require('./controllers/user.js')
 const admin = require('firebase-admin')
 var serviceAccount = require("./dinnerbell-a5fdf-firebase-adminsdk-i6gud-4df4b3b558.json");
 
@@ -55,6 +56,8 @@ function isAuthenticated(req, res, next) {
 
 //Mount Routes
 app.use('/api', indexController)
+
+app.use('/api/user', userController)
 
 app.get('/api/*', (req, res) => {
     res.status(404).json({message: 'That route was not found'})

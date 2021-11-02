@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const MenuItems = require('../models/MenuItems');
 
+
 router.get('/', async (req, res) => {
   try {
       res.json(await MenuItems.find({managedBy: req.user.uid}));
@@ -33,7 +34,7 @@ router.delete("/menu/:id", async (req, res) => {
   });
   
   // menu UPDATE ROUTE
-  router.put("/menu", async (req, res) => {
+  router.put("/", async (req, res) => {
     console.log(req.body._id, req.body)
     try {
       // send all menu
@@ -45,6 +46,8 @@ router.delete("/menu/:id", async (req, res) => {
       res.status(400).json(error);
     }
   })
+
+
   // menu CREATE ROUTE
   router.post("/menu", async (req, res) => {
     try {
