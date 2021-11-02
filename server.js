@@ -2,10 +2,11 @@
 require('dotenv').config();
 const { DATABASE_URL, PORT = 3001 } = process.env;
 const express = require('express');
-const { Mongoose } = require('mongoose');
+
 const cors = require('cors');
 const morgan = require('morgan');
 const indexController = require('./controllers/index.js')
+const admin = require('firebase-admin')
 
 //Initiialize Express
 const app = express();

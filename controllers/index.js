@@ -3,9 +3,7 @@ const router = express.Router();
 const MenuItems = require('../models/MenuItems');
 
 
-router.get('/', (req,res) => {
-    res.send('hello world')
-})
+
 
 router.get("/menu", async (req, res) => {
     try {
@@ -29,7 +27,7 @@ router.delete("/menu/:id", async (req, res) => {
   });
   
   // menu UPDATE ROUTE
-  router.put("/menu/:id", async (req, res) => {
+  router.put("/menu/", async (req, res) => {
     try {
       // send all menu
       res.json(
@@ -50,6 +48,17 @@ router.delete("/menu/:id", async (req, res) => {
       res.status(400).json(error);
     }
   });
+
+  router.post('/menu/:id/comments', async (req,res) => {
+    try {
+      const dish = await MenuItems.findById(req.params.id);
+      dish.comments.push(req.body) 
+      await dish.save()
+      res.json(dish)
+    } catch (error) {
+      res.status(401).json({message: 'sorry something went wrong'})
+    }
+  })
   
 
 module.exports = router;
