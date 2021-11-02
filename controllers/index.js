@@ -2,7 +2,13 @@ const express = require('express');
 const router = express.Router();
 const MenuItems = require('../models/MenuItems');
 
-
+router.get('/', async (req, res) => {
+  try {
+      res.json(await Contact.find({managedBy: req.user.uid}));
+  } catch (error) {
+      res.status(401).json({message: 'Please login to see contacts'});
+  }
+});
 
 
 router.get("/menu", async (req, res) => {
@@ -27,7 +33,7 @@ router.delete("/menu/:id", async (req, res) => {
   });
   
   // menu UPDATE ROUTE
-  router.put("/menu/", async (req, res) => {
+  router.put("/menu", async (req, res) => {
     try {
       // send all menu
       res.json(
@@ -49,16 +55,16 @@ router.delete("/menu/:id", async (req, res) => {
     }
   });
 
-  router.post('/menu/:id/comments', async (req,res) => {
-    try {
-      const dish = await MenuItems.findById(req.params.id);
-      dish.comments.push(req.body) 
-      await dish.save()
-      res.json(dish)
-    } catch (error) {
-      res.status(401).json({message: 'sorry something went wrong'})
-    }
-  })
+  // router.post('/menu/:id/comments', async (req,res) => {
+  //   try {
+  //     const dish = await MenuItems.findById(req.params.id);
+  //     dish.comments.push(req.body) 
+  //     await dish.save()
+  //     res.json(dish)
+  //   } catch (error) {
+  //     res.status(401).json({message: 'sorry something went wrong'})
+  //   }
+  // })
   
 
 module.exports = router;

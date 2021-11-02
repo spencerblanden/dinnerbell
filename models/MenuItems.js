@@ -1,10 +1,18 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const commentSchema = new Schema({
+const CommentSchema = new Schema({
   content: String,
-  createdBy: String
+  rating: String,
+  menuItem: String
 }, {timestamps:true})
+
+
+const UserDetailsSchema= new Schema({
+    user: String,
+    details: [CommentSchema]
+})
+ 
 
 
 const MenuSchema = new Schema({
@@ -16,11 +24,12 @@ const MenuSchema = new Schema({
     rating: { 
       type: Boolean,
       default: false 
-    }
+    },
+    managedBy: String
   });
 
-  
+  const UserDetails= mongoose.model("UserDetails", UserDetailsSchema)
   
   const MenuItems = mongoose.model("MenuItems", MenuSchema);
 
-  module.exports = MenuItems;
+  module.exports = MenuItems, UserDetails;

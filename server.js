@@ -1,6 +1,4 @@
 /// DEPENDENCIES 
-require('dotenv').config();
-const { DATABASE_URL, PORT = 3001 } = process.env;
 const express = require('express');
 
 const cors = require('cors');
@@ -13,6 +11,8 @@ const app = express();
 const mongoose = require('mongoose')
 
 //configure application settings
+require('dotenv').config();
+const { DATABASE_URL, PORT = 3001 } = process.env;
 
 
 //connect to mongoDB
@@ -32,6 +32,10 @@ app.use(express.json())
 
 //Mount Routes
 app.use('/', indexController)
+
+app.get('/api/*', (req, res) => {
+    res.status(404).json({message: 'That route was not found'})
+});
 
 // Tell App to listen
 app.listen(PORT, () => 
