@@ -25,7 +25,7 @@ const MenuSchema = new Schema({
       type: Boolean,
       default: false 
     },
-    managedBy: String
+    // managedBy: String
   });
 
   const UserDetails= mongoose.model("UserDetails", UserDetailsSchema)

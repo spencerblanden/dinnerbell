@@ -4,9 +4,9 @@ const MenuItems = require('../models/MenuItems');
 
 router.get('/', async (req, res) => {
   try {
-      res.json(await Contact.find({managedBy: req.user.uid}));
+      res.json(await MenuItems.find({managedBy: req.user.uid}));
   } catch (error) {
-      res.status(401).json({message: 'Please login to see contacts'});
+      res.status(401).json({message: 'Please login to make changes'});
   }
 });
 

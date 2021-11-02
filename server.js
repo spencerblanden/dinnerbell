@@ -31,7 +31,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 //Mount Routes
-app.use('/', indexController)
+app.use('/api', indexController)
 
 app.get('/api/*', (req, res) => {
     res.status(404).json({message: 'That route was not found'})
