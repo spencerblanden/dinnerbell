@@ -2,8 +2,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const CommentSchema = new Schema({
-  content: String,
-  rating: String,
+  comment: String,
+  rating: { 
+    type: Boolean,
+    default: false 
+  },
   menuItem: String
 }, {timestamps:true})
 
@@ -20,7 +23,7 @@ const MenuSchema = new Schema({
     image: String,
     description: String, 
     itemType: String,
-    // comments: [commentSchema],
+    comments: [CommentSchema],
     rating: { 
       type: Boolean,
       default: false 

@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 router.get("/menu", async (req, res) => {
     try {
       // send all menu
-      res.json(await MenuItems.find({}));
+      res.json(await MenuItems.find());
     } catch (error) {
       //send error
       res.status(400).json(error);
@@ -34,10 +34,11 @@ router.delete("/menu/:id", async (req, res) => {
   
   // menu UPDATE ROUTE
   router.put("/menu", async (req, res) => {
+    console.log(req.body._id, req.body)
     try {
       // send all menu
       res.json(
-        await MenuItems.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        await MenuItems.findByIdAndUpdate(req.body._id, req.body, { new: true })
       );
     } catch (error) {
       //send error
