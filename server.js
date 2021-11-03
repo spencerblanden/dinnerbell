@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const indexController = require('./controllers/index.js')
 const userController = require('./controllers/user.js')
 const admin = require('firebase-admin')
-var serviceAccount = require("./dinnerbell-a5fdf-firebase-adminsdk-i6gud-4df4b3b558.json");
+
 
 
 
@@ -17,7 +17,7 @@ const { auth } = require('firebase-admin');
 
 //configure application settings
 require('dotenv').config();
-const { DATABASE_URL, PORT = 3001 } = process.env;
+const { DATABASE_URL, PORT = 3001, PRIVATE_KEY_ID, PRIVATE_KEY, CLIENT_ID } = process.env;
 
 
 //connect to mongoDB
@@ -36,7 +36,18 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+    credential: admin.credential.cert({
+            "type": "service_account",
+            "project_id": "dinnerbell-a5fdf",
+            "private_key_id": PRIVATE_KEY_ID,
+            "private_key": PRIVATE_KEY.replace(/\\n/g, '\n'),
+            "client_email": "firebase-adminsdk-i6gud@dinnerbell-a5fdf.iam.gserviceaccount.com",
+            "client_id": CLIENT_ID,
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token",
+            "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+            "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-i6gud%40dinnerbell-a5fdf.iam.gserviceaccount.com"
+          })
   });
 
 app.use(async function(req , res , next){
@@ -55,7 +66,12 @@ function isAuthenticated(req, res, next) {
 }
 
 //Mount Routes
-app.use('/api', indexController)
+app.get('/api', (req, res) => {
+    res.json({message: 'Welcome to the React CRM API'})
+});
+
+
+app.use('/api/menu', indexController)
 
 app.use('/api/user', userController)
 

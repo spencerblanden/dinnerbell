@@ -3,17 +3,26 @@ const Schema = mongoose.Schema
 
 
 const CommentSchema = new Schema({
-    comment: String,
+    comment: { 
+        type: String,
+        default: null
+      },
     rating: { 
       type: Boolean,
       default: false 
     },
-    menuItem: String
+    menuItem: { 
+        type: String,
+        default: null
+      },
   }, {timestamps:true})
   
   
   const UserDetailsSchema= new Schema({
-      user: String,
+      user: { 
+        type: String,
+        default: null
+      },
       details: [CommentSchema]
   })
    

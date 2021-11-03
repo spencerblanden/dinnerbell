@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 
-router.get("/user", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
       // send all menu
       res.json(await User.find());
@@ -12,7 +12,7 @@ router.get("/user", async (req, res) => {
     }
   });
 
-  router.put("/user", async (req, res) => {
+  router.put("/", async (req, res) => {
     console.log(req.body._id, req.body)
     try {
       // send all menu
