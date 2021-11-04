@@ -31,7 +31,7 @@ db.on('connected', () => console.log('mongoose connected'))
 db.on('disconnected', () => console.log('mongoose disconnected'))
 
 //Mount Middleware
-app.use(cors())
+app.use(cors({origin:true}))
 app.use(morgan('dev'))
 app.use(express.json())
 
