@@ -16,9 +16,11 @@ router.get("/", async (req, res) => {
     console.log(req.body._id, req.body)
     try {
       // send all menu
-      res.json(
-        await User.findByIdAndUpdate(req.body._id, req.body, { new: true })
-      );
+      
+        const user = await User.findById(req.body._id )
+        user.favorites.push(req.body)
+        await user.save()
+      
     } catch (error) {
       //send error
       res.status(400).json(error);
