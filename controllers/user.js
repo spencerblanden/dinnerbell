@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
         await user.save()
       
     } catch (error) {
-      //send error
+      console.log(error)
       res.status(400).json(error);
     }
   })
