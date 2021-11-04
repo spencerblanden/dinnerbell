@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   });
 
   router.put("/", async (req, res) => {
-    console.log(req.body.id, req.body)
+    console.log(req.body.id, req.body.ind)
     try {
       // send all menu
       
