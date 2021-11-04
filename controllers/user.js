@@ -5,7 +5,7 @@ const UserDetails = require('../models/User');
 router.get("/", async (req, res) => {
     try {
       // send all menu
-      res.json(await User.find());
+      res.json(await UserDetails.find());
     } catch (error) {
       //send error
       res.status(400).json(error);
@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
     try {
       // send all menu
       
-        const user = res.json(await UserDetails.find({_id: req.body.person}))
+        const user = await UserDetails.findById(req.body.person)
         await user.favorites.push(req.body.ind)
         await user.save()
       
