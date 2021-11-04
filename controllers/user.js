@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
     
     try {
       // send all menu
-        const user = await UserDetails.findById(req.body.person)
+        const user = await UserDetails.find({user: req.body.person})
         
         await user.favorites.push(req.body.ind.menuItem)
         await user.save()
