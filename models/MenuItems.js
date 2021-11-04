@@ -14,23 +14,12 @@ const CommentSchema = new Schema({
 }, {timestamps:true})
 
 
-const UserDetailsSchema= new Schema({
-    user: { 
-      type: String,
-      default: null
-    },
-    details: [CommentSchema]
-})
 
 const MenuSchema = new Schema({
     name: String,
     image: String,
     description: String, 
     itemType: String,
-    rating: { 
-      user: String,
-      type: Boolean 
-    },
     managedBy: String
   });
 

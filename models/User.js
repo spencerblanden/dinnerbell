@@ -2,15 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 
-const CommentSchema = new Schema({
-    comment: { 
-        type: String,
-        default: null
-      },
-    rating: { 
-      type: Boolean,
-      default: false 
-    },
+const RatingSchema = new Schema({
+
     menuItem: { 
         type: String,
         default: null
@@ -23,7 +16,7 @@ const CommentSchema = new Schema({
         type: String,
         default: null
       },
-      details: [CommentSchema]
+      favorites: [RatingSchema]
   })
    
 
