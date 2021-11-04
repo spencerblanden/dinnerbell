@@ -13,12 +13,12 @@ router.get("/", async (req, res) => {
   });
 
   router.put("/", async (req, res) => {
-    console.log(req.body._id, req.body)
+    console.log(req.body.id, req.body)
     try {
       // send all menu
       
         const user = await User.findById(req.body._id )
-        user.favorites.push(req.body)
+        user.favorites.push(req.body.ind)
         await user.save()
       
     } catch (error) {
