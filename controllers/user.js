@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const UserDetails = require('../models/User');
 
 router.get("/", async (req, res) => {
     try {
@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
     try {
       // send all menu
       
-        const user = res.json(await User.find({_id: req.body.person}))
+        const user = res.json(await UserDetails.find({_id: req.body.person}))
         await user.favorites.push(req.body.ind)
         await user.save()
       
