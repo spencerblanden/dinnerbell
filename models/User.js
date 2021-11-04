@@ -2,13 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 
-const RatingSchema = new Schema({
 
-    menuItem: { 
-        type: String,
-        default: null
-      },
-  }, {timestamps:true})
   
   
   const UserDetailsSchema= new Schema({
@@ -16,7 +10,7 @@ const RatingSchema = new Schema({
         type: String,
         default: null
       },
-      favorites: [RatingSchema]
+      favorites: [String]
   })
    
 
